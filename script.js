@@ -326,21 +326,70 @@ document.addEventListener('DOMContentLoaded', function() {
         showTestimonial(currentTestimonial);
     }, 6000);
 
-    // Pricing Cards Enhanced Interactions
-    const pricingCards = document.querySelectorAll('.pricing-card');
-    pricingCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            if (!this.classList.contains('featured')) {
-                this.style.transform = 'translateY(-15px) scale(1.02)';
-                this.style.boxShadow = '0 25px 50px rgba(0, 255, 136, 0.3)';
+    // Auth Section - Login e Dashboard
+    const authSection = document.getElementById('auth-section');
+    const loginForm = document.querySelector('.login-form');
+    const dashboard = document.querySelector('.dashboard');
+    const authForm = document.querySelector('.auth-form');
+    const logoutBtn = document.querySelector('.logout-btn');
+    
+    // Função para mostrar login
+    function showLogin() {
+        if (authSection) {
+            authSection.style.display = 'flex';
+            if (loginForm) loginForm.style.display = 'block';
+            if (dashboard) dashboard.style.display = 'none';
+        }
+    }
+    
+    // Função para mostrar dashboard
+    function showDashboard() {
+        if (authSection) {
+            authSection.style.display = 'block';
+            if (loginForm) loginForm.style.display = 'none';
+            if (dashboard) dashboard.style.display = 'block';
+        }
+    }
+    
+    // Simulação de login
+    if (authForm) {
+        authForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Simulação de validação
+            if (email && password) {
+                showDashboard();
+                
+                // Atualizar nome do usuário
+                const userName = document.querySelector('.user-name');
+                if (userName) {
+                    userName.textContent = email.split('@')[0];
+                }
             }
         });
-        
-        card.addEventListener('mouseleave', function() {
-            if (!this.classList.contains('featured')) {
-                this.style.transform = '';
-                this.style.boxShadow = '';
+    }
+    
+    // Logout
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+            showLogin();
+            
+            // Limpar formulário
+            if (authForm) {
+                authForm.reset();
             }
+        });
+    }
+    
+    // Botões para testar login (remover em produção)
+    const testLoginBtns = document.querySelectorAll('[data-auth="login"]');
+    testLoginBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            showLogin();
         });
     });
 

@@ -13,6 +13,7 @@
 <body>
     <!-- ========== DIVISÃO 0: BACKGROUND (FUNDO ANIMADO) ========== -->
     <div class="tech-background">
+        <div class="neural-network" id="neuralNetwork"></div>
         <div class="particle-field"></div>
         <div class="grid-overlay"></div>
         <div class="gradient-orbs"></div>
@@ -25,12 +26,12 @@
                 <span class="brand-black">Mark</span><span class="brand-neon">tech</span>
             </div>
             <div class="nav-menu">
-                <a href="#hero" class="nav-link">Home</a>
-                <a href="#problem" class="nav-link">Problem</a>
-                <a href="#solution" class="nav-link">Solution</a>
-                <a href="#pricing" class="nav-link">Pricing</a>
-                <a href="#portfolio" class="nav-link">Portfolio</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#hero" class="nav-link">Início</a>
+                <a href="#problem" class="nav-link">Problema</a>
+                <a href="#solution" class="nav-link">Solução</a>
+                <a href="#pricing" class="nav-link">Planos</a>
+                <a href="#portfolio" class="nav-link">Portfólio</a>
+                <a href="#contact" class="nav-link">Contato</a>
                 <button class="premium-btn">Começar</button>
             </div>
             <div class="mobile-toggle">
@@ -182,48 +183,105 @@
         </div>
     </section>
 
-    <!-- ========== DIVISÃO 2: SERVIÇOS PREMIUM ========== -->
-    <section id="services" class="services-section">
-        <div class="section-marker">DIV 2 - SERVIÇOS</div>
+    <!-- ========== DIVISÃO 2: PROBLEMA ========== -->
+    <section id="problem" class="problem-section">
+        <div class="section-marker">DIV 2 - PROBLEMA</div>
         <div class="section-container">
-            <div class="services-grid">
-                <div class="service-card scroll-reveal">
-                    <div class="card-glow"></div>
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
+            <div class="section-header">
+                <h2 class="section-title">O Problema é Real</h2>
+                <p class="section-subtitle">Sites que não convertem e perdem clientes todos os dias</p>
+            </div>
+            
+            <div class="problem-content">
+                <div class="problem-grid">
+                    <div class="problem-card scroll-reveal">
+                        <div class="problem-icon">
+                            <i class="fas fa-chart-line-down"></i>
+                        </div>
+                        <h3>Perda de Vendas</h3>
+                        <p>Site lento e confuso faz clientes desistirem antes de comprar</p>
                     </div>
-                    <h3>Sites que convertem</h3>
-                    <p>Rápidos, modernos e feitos para gerar resultado</p>
-                    <div class="card-line"></div>
-                </div>
-                <div class="service-card scroll-reveal">
-                    <div class="card-glow"></div>
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
+                    
+                    <div class="problem-card scroll-reveal">
+                        <div class="problem-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Experiência Ruim</h3>
+                        <p>Design desatualizado que não funciona no celular</p>
                     </div>
-                    <h3>Apps fluidos</h3>
-                    <p>Experiência profissional direto no celular</p>
-                    <div class="card-line"></div>
-                </div>
-                <div class="service-card scroll-reveal">
-                    <div class="card-glow"></div>
-                    <div class="service-icon">
-                        <i class="fas fa-cogs"></i>
+                    
+                    <div class="problem-card scroll-reveal">
+                        <div class="problem-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Visibilidade Zero</h3>
+                        <p>Site não aparece no Google e ninguém encontra seu negócio</p>
                     </div>
-                    <h3>Controle total</h3>
-                    <p>Sistemas sob medida para escalar seu negócio</p>
-                    <div class="card-line"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== DIVISÃO 3: BENEFITS (BENEFÍCIOS) ========== -->
-    <section id="benefits" class="benefits-section">
-        <div class="section-marker">DIV 3 - BENEFITS</div>
+    <!-- ========== DIVISÃO 3: SOLUÇÃO ========== -->
+    <section id="solution" class="solution-section">
+        <div class="section-marker">DIV 3 - SOLUÇÃO</div>
         <div class="section-container">
             <div class="section-header">
-                <h2 class="section-title">Por que Mark Tech?</h2>
+                <h2 class="section-title">Nossa Solução</h2>
+                <p class="section-subtitle">Sites modernos que convertem visitantes em clientes</p>
+            </div>
+            
+            <div class="solution-content">
+                <div class="solution-grid">
+                    <div class="solution-card scroll-reveal">
+                        <div class="solution-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Performance Extrema</h3>
+                        <p>Sites ultra-rápidos que carregam em menos de 2 segundos</p>
+                    </div>
+                    
+                    <div class="solution-card scroll-reveal">
+                        <div class="solution-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Design Responsivo</h3>
+                        <p>Experiência perfeita em qualquer dispositivo, do celular ao desktop</p>
+                    </div>
+                    
+                    <div class="solution-card scroll-reveal">
+                        <div class="solution-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Otimizado SEO</h3>
+                        <p>Apareça no Google e atraia mais clientes qualificados</p>
+                    </div>
+                    
+                    <div class="solution-card scroll-reveal">
+                        <div class="solution-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Código Limpo</h3>
+                        <p>Tecnologia moderna e sustentável para seu negócio escalar</p>
+                    </div>
+                </div>
+                
+                <div class="solution-cta">
+                    <h3>Pronto para transformar seu negócio?</h3>
+                    <p>Comece hoje mesmo com uma consultoria gratuita</p>
+                    <button class="premium-btn primary">Fale Conosco</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DIVISÃO 4: BENEFÍCIOS ========== -->
+    <section id="benefits" class="benefits-section">
+        <div class="section-marker">DIV 4 - BENEFÍCIOS</div>
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Por que escolher Mark Tech?</h2>
+                <p class="section-subtitle">Benefícios que fazem a diferença no seu negócio</p>
             </div>
             <div class="benefits-grid">
                 <div class="benefit-item scroll-reveal">
@@ -235,7 +293,7 @@
                         <div class="icon-ring ring-2"></div>
                     </div>
                     <div class="benefit-metric">
-                        <span class="metric-value">Entrega rápida</span>
+                        <span class="metric-value">Entrega Rápida</span>
                     </div>
                     <p class="benefit-desc">Prazos reais, entregas no tempo</p>
                 </div>
@@ -248,7 +306,7 @@
                         <div class="icon-ring ring-2"></div>
                     </div>
                     <div class="benefit-metric">
-                        <span class="metric-value">Preço transparente</span>
+                        <span class="metric-value">Preço Transparente</span>
                     </div>
                     <p class="benefit-desc">Sem surpresas, sem taxas ocultas</p>
                 </div>
@@ -261,7 +319,7 @@
                         <div class="icon-ring ring-2"></div>
                     </div>
                     <div class="benefit-metric">
-                        <span class="metric-value">Código profissional</span>
+                        <span class="metric-value">Código Profissional</span>
                     </div>
                     <p class="benefit-desc">Tecnologia de ponta, sempre</p>
                 </div>
@@ -274,7 +332,7 @@
                         <div class="icon-ring ring-2"></div>
                     </div>
                     <div class="benefit-metric">
-                        <span class="metric-value">Suporte contínuo</span>
+                        <span class="metric-value">Suporte Contínuo</span>
                     </div>
                     <p class="benefit-desc">Acompanhamento pós-entrega</p>
                 </div>
@@ -282,144 +340,128 @@
         </div>
     </section>
 
-    <!-- ========== DIVISÃO 4: TECH (TECNOLOGIAS) ========== -->
-    <section id="tech" class="tech-section">
-        <div class="section-marker">DIV 4 - TECH</div>
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">Tecnologias Modernas</h2>
-                <p class="section-subtitle">Stack profissional para resultados reais</p>
-            </div>
-            
-            <div class="tech-showcase">
-                <!-- Código animado no background -->
-                <div class="code-rain">
-                    <div class="code-column col-1">
-                        <span>{</span><span>}</span><span>[]</span><span>()</span><span>=></span>
-                        <span>{</span><span>}</span><span>[]</span><span>()</span><span>=></span>
-                    </div>
-                    <div class="code-column col-2">
-                        <span>&lt;/&gt;</span><span>const</span><span>let</span><span>var</span><span>fn</span>
-                        <span>&lt;/&gt;</span><span>const</span><span>let</span><span>var</span><span>fn</span>
-                    </div>
-                    <div class="code-column col-3">
-                        <span>01</span><span>10</span><span>11</span><span>00</span><span>{}</span>
-                        <span>01</span><span>10</span><span>11</span><span>00</span><span>{}</span>
-                    </div>
-                </div>
-                
-                <!-- Grid de tecnologias -->
-                <div class="tech-grid">
-                    <div class="tech-item scroll-reveal" data-tech="React">
-                        <div class="tech-glow"></div>
-                        <i class="fab fa-react"></i>
-                        <span class="tech-name">React</span>
-                    </div>
-                    <div class="tech-item scroll-reveal" data-tech="Node.js">
-                        <div class="tech-glow"></div>
-                        <i class="fab fa-node"></i>
-                        <span class="tech-name">Node.js</span>
-                    </div>
-                    <div class="tech-item scroll-reveal" data-tech="JavaScript">
-                        <div class="tech-glow"></div>
-                        <i class="fab fa-js"></i>
-                        <span class="tech-name">JavaScript</span>
-                    </div>
-                    <div class="tech-item scroll-reveal" data-tech="Python">
-                        <div class="tech-glow"></div>
-                        <i class="fab fa-python"></i>
-                        <span class="tech-name">Python</span>
-                    </div>
-                    <div class="tech-item scroll-reveal" data-tech="Figma">
-                        <div class="tech-glow"></div>
-                        <i class="fab fa-figma"></i>
-                        <span class="tech-name">Figma</span>
-                    </div>
-                    <div class="tech-item scroll-reveal" data-tech="Database">
-                        <div class="tech-glow"></div>
-                        <i class="fas fa-database"></i>
-                        <span class="tech-name">Database</span>
-                    </div>
-                </div>
-            </div>
+    <!-- ========== SEÇÃO PACOTES (SIMPLES E VISÍVEL) ========== -->
+    <section class="pacotes">
+        <h2>Escolha seu Pacote</h2>
+        
+        <!-- PACOTE BÁSICO -->
+        <div class="pacote-card">
+            <h3>PACOTE BÁSICO</h3>
+            <div class="preco">R$ 49,90</div>
+            <ul>
+                <li><i class="fas fa-check"></i> Até 3 páginas</li>
+                <li><i class="fas fa-check"></i> Design moderno ou minimalista</li>
+                <li><i class="fas fa-check"></i> Responsivo</li>
+                <li><i class="fas fa-check"></i> Otimizado SEO</li>
+            </ul>
+            <button class="btn-contratar" onclick="window.location.href='pedido-basico.html'">Contratar</button>
+        </div>
+        
+        <!-- PACOTE INTERMEDIÁRIO -->
+        <div class="pacote-card">
+            <h3>PACOTE INTERMEDIÁRIO</h3>
+            <div class="preco">R$ 99,90</div>
+            <ul>
+                <li><i class="fas fa-check"></i> Até 5 páginas</li>
+                <li><i class="fas fa-check"></i> Design moderno, minimalista ou tecnológico</li>
+                <li><i class="fas fa-check"></i> Login + avaliações</li>
+                <li><i class="fas fa-check"></i> Dashboard simples</li>
+            </ul>
+            <button class="btn-contratar" onclick="window.location.href='pedido-intermediario.html'">Contratar</button>
+        </div>
+        
+        <!-- PACOTE AVANÇADO -->
+        <div class="pacote-card">
+            <h3>PACOTE AVANÇADO</h3>
+            <div class="preco">R$ 199,90</div>
+            <ul>
+                <li><i class="fas fa-check"></i> Até 8 páginas</li>
+                <li><i class="fas fa-check"></i> Design moderno, tecnológico ou corporativo</li>
+                <li><i class="fas fa-check"></i> Login + avaliações + pagamento</li>
+                <li><i class="fas fa-check"></i> Dashboard avançado</li>
+            </ul>
+            <button class="btn-contratar" onclick="window.location.href='pedido-avancado.html'">Contratar</button>
         </div>
     </section>
 
-    <!-- ========== DIVISÃO 5: PRICING (SERVIÇOS) ========== -->
-    <section id="pricing" class="pricing-section">
-        <div class="section-marker">DIV 5 - PRICING</div>
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">Escolha seu Plano</h2>
-                <p class="section-subtitle">Soluções sob medida para cada necessidade</p>
+    <!-- ========== DIVISÃO EXTRA: LOGIN E DASHBOARD ========== -->
+    <section id="auth-section" class="auth-section" style="display: none;">
+        <div class="section-marker">DIV EXTRA - AUTH</div>
+        <div class="auth-container">
+            <!-- Login Form -->
+            <div class="auth-card login-form">
+                <div class="auth-header">
+                    <div class="brand">
+                        <span class="brand-black">Mark</span><span class="brand-neon">tech</span>
+                    </div>
+                    <h2>Acessar Sistema</h2>
+                </div>
+                <form class="auth-form">
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="premium-btn primary full-width">Entrar</button>
+                    <div class="auth-links">
+                        <a href="#" class="auth-link">Esqueceu a senha?</a>
+                        <a href="#" class="auth-link">Criar conta</a>
+                    </div>
+                </form>
             </div>
             
-            <div class="pricing-showcase">
-                <!-- Elementos decorativos flutuantes -->
-                <div class="pricing-orb orb-left"></div>
-                <div class="pricing-orb orb-right"></div>
-                <div class="pricing-line line-1"></div>
-                <div class="pricing-line line-2"></div>
-                
-                <div class="pricing-grid">
-                    <div class="pricing-card scroll-reveal">
-                        <div class="card-shine"></div>
-                        <div class="plan-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <div class="plan-header">
-                            <h3>Essencial</h3>
-                            <p class="plan-desc">Projeto sob medida</p>
-                        </div>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Escopo definido</li>
-                            <li><i class="fas fa-check"></i> Prazo claro</li>
-                            <li><i class="fas fa-check"></i> Orçamento fechado</li>
-                        </ul>
-                        <button class="premium-btn">Solicitar orçamento</button>
+            <!-- Dashboard -->
+            <div class="dashboard" style="display: none;">
+                <div class="dashboard-header">
+                    <div class="brand">
+                        <span class="brand-black">Mark</span><span class="brand-neon">tech</span>
                     </div>
-                    <div class="pricing-card featured scroll-reveal">
-                        <div class="featured-badge">Mais Popular</div>
-                        <div class="card-shine"></div>
-                        <div class="plan-icon featured-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="plan-header">
-                            <h3>Profissional</h3>
-                            <p class="plan-desc">Orçamento personalizado</p>
-                        </div>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Escopo flexível</li>
-                            <li><i class="fas fa-check"></i> Prioridade na fila</li>
-                            <li><i class="fas fa-check"></i> Suporte extendido</li>
-                        </ul>
-                        <button class="premium-btn primary">Solicitar orçamento</button>
-                    </div>
-                    <div class="pricing-card scroll-reveal">
-                        <div class="card-shine"></div>
-                        <div class="plan-icon">
-                            <i class="fas fa-crown"></i>
-                        </div>
-                        <div class="plan-header">
-                            <h3>Avançado</h3>
-                            <p class="plan-desc">Time dedicado</p>
-                        </div>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Time exclusivo</li>
-                            <li><i class="fas fa-check"></i> Sprints semanais</li>
-                            <li><i class="fas fa-check"></i> Suporte contínuo</li>
-                        </ul>
-                        <button class="premium-btn">Falar com especialista</button>
+                    <div class="user-menu">
+                        <span class="user-name">Usuário</span>
+                        <button class="logout-btn">Sair</button>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== DIVISÃO 6: PORTFOLIO (PROJETOS) ========== -->
+                <div class="dashboard-content">
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Estatísticas</h3>
+                            <p>Visualize o desempenho</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <h3>Projetos</h3>
+                            <p>Gerencie seus projetos</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <h3>Configurações</h3>
+                            <p>Personalize sua conta</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <h3>Pagamentos</h3>
+                            <p>Gerencie assinaturas</p>
+                        </div>
+                    </div>
     <section id="portfolio" class="portfolio-section">
-        <div class="section-marker">DIV 6 - PORTFOLIO</div>
+        <div class="section-marker">DIV 6 - PORTFÓLIO</div>
         <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Nossos Projetos</h2>
+                <p class="section-subtitle">Cases de sucesso que impulsionam negócios</p>
+            </div>
             <div class="portfolio-grid">
                 <div class="portfolio-item">
                     <div class="portfolio-visual">
@@ -437,12 +479,12 @@
                 <div class="portfolio-item">
                     <div class="portfolio-visual">
                         <div class="portfolio-image">
-                            <img src="https://via.placeholder.com/600x400/0a0a0a/00ff88?text=E-commerce" alt="E-commerce">
+                            <img src="https://via.placeholder.com/600x400/0a0a0a/0088ff?text=E-commerce" alt="E-commerce">
                         </div>
                         <div class="portfolio-overlay">
                             <div class="overlay-content">
-                                <h3>E-commerce</h3>
-                                <p>+300% vendas online</p>
+                                <h3>Loja Virtual</h3>
+                                <p>+200% vendas online</p>
                             </div>
                         </div>
                     </div>
@@ -450,12 +492,12 @@
                 <div class="portfolio-item">
                     <div class="portfolio-visual">
                         <div class="portfolio-image">
-                            <img src="https://via.placeholder.com/600x400/0a0a0a/00ff88?text=App+Delivery" alt="App Delivery">
+                            <img src="https://via.placeholder.com/600x400/0a0a0a/8800ff?text=App+Mobile" alt="App Mobile">
                         </div>
                         <div class="portfolio-overlay">
                             <div class="overlay-content">
                                 <h3>App Delivery</h3>
-                                <p>5K+ downloads</p>
+                                <p>+300% entregas realizadas</p>
                             </div>
                         </div>
                     </div>
@@ -464,7 +506,63 @@
         </div>
     </section>
 
-    <!-- ========== DIVISÃO 7: TESTIMONIALS (DEPOIMENTOS) ========== -->
+    <!-- ========== DIVISÃO 7: CONTATO ========== -->
+    <section id="contact" class="contact-section">
+        <div class="section-marker">DIV 7 - CONTATO</div>
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Vamos Conversar?</h2>
+                <p class="section-subtitle">Transforme suas ideias em realidade digital</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>E-mail</h3>
+                            <p>contato@marktech.com.br</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Telefone</h3>
+                            <p>(11) 99999-8888</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Localização</h3>
+                            <p>São Paulo - SP</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Seu nome" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Seu e-mail" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Sua mensagem" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="premium-btn primary full-width">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DIVISÃO 8: TESTIMONIALS (DEPOIMENTOS) ========== -->
     <section id="testimonials" class="testimonials-section">
         <div class="section-marker">DIV 7 - TESTIMONIALS</div>
         <div class="section-container">
@@ -641,6 +739,7 @@
         </div>
     </footer>
 
+    <script src="neural-network.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
