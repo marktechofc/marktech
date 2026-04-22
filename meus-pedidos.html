@@ -1,0 +1,2145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark tech - Meus Pedidos</title>
+    <base href="./">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700;800;900&family=Chakra+Petch:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos específicos da página Meus Pedidos */
+        
+        /* Esconder navbar apenas nesta página */
+        .nav-header {
+            display: none !important;
+        }
+        
+        /* Partículas tecnológicas no fundo */
+        .tech-particles-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .tech-particle {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            background: rgba(0, 255, 136, 0.4);
+            border-radius: 50%;
+            box-shadow: 0 0 4px rgba(0, 255, 136, 0.3);
+            animation: particleFloat 25s linear infinite;
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(30px);
+                opacity: 0;
+            }
+        }
+        
+        /* Barra de pesquisa */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1.5rem;
+            background: rgba(26, 26, 26, 0.8);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--neon-green);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--neon-green);
+            font-size: 1.1rem;
+        }
+        
+        .pedidos-section {
+            min-height: 100vh;
+            padding: 80px 0 80px;
+            position: relative;
+        }
+
+        .pedidos-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+
+        .pedidos-header {
+            text-align: center;
+            margin-bottom: var(--space-3xl);
+        }
+
+        .pedidos-title {
+            font-size: 3rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.15);
+        }
+
+        .pedidos-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pedidos-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: var(--space-xl);
+        }
+
+        .pedido-card {
+            background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+            border-radius: 24px;
+            border: 2px solid rgba(0, 255, 136, 0.4);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .pedido-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 255, 136, 0.05) 0%, 
+                transparent 50%, 
+                rgba(0, 136, 255, 0.03) 100%);
+            opacity: 0.9;
+        }
+
+        .pedido-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 50px 150px rgba(0, 0, 0, 0.9),
+                0 0 50px rgba(0, 255, 136, 0.3),
+                0 0 100px rgba(0, 255, 136, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+            border-color: rgba(0, 255, 136, 0.7);
+        }
+
+        .pedido-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-xl);
+            position: relative;
+            z-index: 1;
+        }
+
+        .pedido-nome {
+            font-size: 1.6rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+            line-height: 1.3;
+        }
+
+        .pedido-meta {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .pedido-data,
+        .pedido-id {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.65);
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .pedido-data i,
+        .pedido-id i {
+            color: var(--neon-green);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .status-analise {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            border: 1px solid rgba(255, 193, 7, 0.4);
+        }
+
+        .status-desenvolvimento {
+            background: rgba(0, 123, 255, 0.2);
+            color: #007bff;
+            border: 1px solid rgba(0, 123, 255, 0.4);
+        }
+
+        .status-concluido {
+            background: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+            border: 1px solid rgba(40, 167, 69, 0.4);
+        }
+
+        .status-cancelado {
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 107, 107, 0.4);
+        }
+
+        .pedido-progress {
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: var(--space-sm);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-green), #00cc6a);
+            border-radius: 5px;
+            transition: width 0.4s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+
+        .progress-text {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: var(--space-3xl);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+        }
+
+        /* Modal de Detalhes */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+            border-radius: 24px;
+            border: 2px solid rgba(0, 255, 136, 0.4);
+            padding: 2.5rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            z-index: 1;
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Container interno para scroll controlado */
+        .modal-status .modal-content {
+            max-height: 75vh;
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+
+        /* Scrollbar personalizado */
+        .modal-status .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-status .modal-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+
+        .modal-status .modal-content::-webkit-scrollbar-thumb {
+            background: rgba(0, 255, 136, 0.5);
+            border-radius: 4px;
+        }
+
+        .modal-status .modal-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 255, 136, 0.7);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        /* Classes específicas para diferenciação */
+        .modal-detalhes .modal-content {
+            /* Mantém estilo padrão do site */
+            animation: modalDetailsEntrance 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .modal-status .modal-content {
+            /* Diferenciação FORÇADA para modal de status */
+            border: 3px solid rgba(0, 255, 136, 0.8);
+            background: linear-gradient(145deg, 
+                #1a1a1a 0%, 
+                #0f0f0f 50%,
+                #0d1117 100%);
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.9),
+                0 0 40px rgba(0, 255, 136, 0.3),
+                0 0 80px rgba(0, 255, 136, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            animation: modalStatusEntrance 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-status .modal-content::before {
+            background: linear-gradient(135deg, 
+                rgba(0, 255, 136, 0.12) 0%, 
+                transparent 40%, 
+                rgba(0, 136, 255, 0.08) 100%);
+            opacity: 1;
+        }
+
+        .modal-status .modal-content::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                rgba(0, 255, 136, 0.05) 90deg,
+                transparent 180deg,
+                rgba(0, 136, 255, 0.03) 270deg,
+                transparent 360deg
+            );
+            animation: statusRotate 20s linear infinite;
+            pointer-events: none;
+        }
+
+        .modal-status .modal-header {
+            border-bottom: 2px solid rgba(0, 255, 136, 0.3);
+            padding-bottom: var(--space-lg);
+            margin-bottom: var(--space-xl);
+            position: relative;
+            z-index: 2;
+        }
+
+        .modal-status .modal-title {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--neon-green), #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .modal-status .progress-bar {
+            height: 16px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.15));
+            border: 2px solid rgba(0, 255, 136, 0.4);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: var(--space-lg) 0;
+            position: relative;
+            box-shadow: 
+                0 4px 12px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-status .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(0, 255, 136, 0.3) 50%, 
+                transparent 100%);
+            animation: progressGlow 2s ease-in-out infinite;
+        }
+
+        .modal-status .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, 
+                var(--neon-green) 0%, 
+                #00ff88 25%, 
+                #00cc6a 50%, 
+                #00ff88 75%, 
+                var(--neon-green) 100%);
+            border-radius: 6px;
+            transition: width 0.8s ease;
+            box-shadow: 
+                0 0 25px rgba(0, 255, 136, 0.8),
+                0 0 50px rgba(0, 255, 136, 0.4),
+                inset 0 0 15px rgba(0, 255, 136, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-status .progress-fill::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.4) 50%, 
+                transparent 100%);
+            animation: progressShine 2.5s ease-in-out infinite;
+        }
+
+        .modal-status .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(0, 255, 136, 0.2) 30%, 
+                rgba(0, 255, 136, 0.3) 50%, 
+                rgba(0, 255, 136, 0.2) 70%, 
+                transparent 100%);
+            animation: progressPulse 1.5s ease-in-out infinite;
+        }
+
+        /* Estrutura técnica com linha de progresso e etapas */
+        .modal-status .progress-visual {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 12px;
+            padding: var(--space-lg);
+            margin: var(--space-lg) 0;
+            position: relative;
+        }
+
+        .modal-status .progress-visual-header {
+            font-weight: 600;
+            color: var(--neon-green);
+            margin-bottom: var(--space-md);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            font-size: 0.9rem;
+        }
+
+        .modal-status .progress-steps-visual {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            margin: var(--space-lg) 0;
+        }
+
+        .modal-status .progress-steps-visual::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 30px;
+            right: 30px;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                var(--neon-green) 0%, 
+                rgba(0, 255, 136, 0.6) 50%, 
+                var(--neon-green) 100%);
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .modal-status .progress-step-visual {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .modal-status .progress-step-visual.completed {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            border: 3px solid #28a745;
+            color: white;
+            box-shadow: 
+                0 0 20px rgba(40, 167, 69, 0.6),
+                0 0 40px rgba(40, 167, 69, 0.3);
+        }
+
+        .modal-status .progress-step-visual.active {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            border: 3px solid #007bff;
+            color: white;
+            box-shadow: 
+                0 0 25px rgba(0, 123, 255, 0.8),
+                0 0 50px rgba(0, 123, 255, 0.4);
+            animation: stepActivePulse 2s ease-in-out infinite;
+        }
+
+        .modal-status .progress-step-visual.pending {
+            background: rgba(255, 193, 7, 0.2);
+            border: 3px solid rgba(255, 193, 7, 0.4);
+            color: #ffc107;
+            opacity: 0.6;
+        }
+
+        .modal-status .progress-step-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--space-md);
+        }
+
+        .modal-status .progress-step-label {
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.01em;
+        }
+
+        .modal-status .progress-step-label.completed {
+            color: #28a745;
+        }
+
+        .modal-status .progress-step-label.active {
+            color: #007bff;
+            font-weight: 700;
+        }
+
+        .modal-status .progress-step-label.pending {
+            color: rgba(255, 193, 7, 0.6);
+        }
+
+        .modal-status .progress-steps {
+            position: relative;
+        }
+
+        .modal-status .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 12px;
+            right: 12px;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                var(--neon-green) 0%, 
+                rgba(0, 255, 136, 0.3) 50%, 
+                var(--neon-green) 100%);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .modal-status .progress-step {
+            position: relative;
+            z-index: 1;
+        }
+
+        .modal-status .step-icon {
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+
+        .modal-status .step-icon.completed {
+            box-shadow: 0 0 15px rgba(40, 167, 69, 0.5);
+        }
+
+        .modal-status .step-icon.active {
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.6);
+            animation: stepPulse 2s ease-in-out infinite;
+        }
+
+        /* Animações específicas */
+        @keyframes modalDetailsEntrance {
+            0% {
+                transform: scale(0.9) translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes modalStatusEntrance {
+            0% {
+                transform: scale(0.8) translateY(40px);
+                opacity: 0;
+            }
+            25% {
+                transform: scale(1.05) translateY(-10px);
+            }
+            50% {
+                transform: scale(0.98) translateY(5px);
+            }
+            75% {
+                transform: scale(1.01) translateY(-2px);
+            }
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes progressGlow {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes progressShine {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        @keyframes stepPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(0, 123, 255, 0.6);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 25px rgba(0, 123, 255, 0.8);
+            }
+        }
+
+        @keyframes statusRotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes progressPulse {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes stepActivePulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 
+                    0 0 25px rgba(0, 123, 255, 0.8),
+                    0 0 50px rgba(0, 123, 255, 0.4);
+            }
+            50% {
+                transform: scale(1.15);
+                box-shadow: 
+                    0 0 35px rgba(0, 123, 255, 1),
+                    0 0 70px rgba(0, 123, 255, 0.6);
+            }
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 255, 136, 0.05) 0%, 
+                transparent 50%, 
+                rgba(0, 136, 255, 0.03) 100%);
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-xl);
+            position: relative;
+            z-index: 2;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            width: auto;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            color: var(--neon-green);
+            position: relative;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .modal-close::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(0, 255, 136, 0.4) 30%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(0, 255, 136, 0.4) 70%,
+                transparent 100%);
+            transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .modal-close::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, 
+                rgba(0, 255, 136, 0.3) 0%, 
+                transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.4s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(0, 255, 136, 0.1);
+            transform: translateX(-2px) scale(1.05);
+            border-radius: 6px;
+        }
+
+        .modal-close:active {
+            background: rgba(0, 255, 136, 0.15);
+            transform: translateX(-1px) scale(0.98);
+            border-radius: 4px;
+        }
+
+        /* Animação de SVG refinado */
+        .modal-close-svg {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 0 2px rgba(0, 255, 136, 0.3));
+        }
+
+        .modal-close:hover .modal-close-svg {
+            transform: translateX(-2px) scale(1.05);
+            filter: drop-shadow(0 0 6px rgba(0, 255, 136, 0.8));
+        }
+
+        .modal-close:active .modal-close-svg {
+            transform: translateX(-1px) scale(0.97);
+            filter: drop-shadow(0 0 4px rgba(0, 255, 136, 0.6));
+        }
+
+        /* Animação das linhas do SVG */
+        .modal-close-svg path:first-child {
+            transition: all 0.3s ease;
+        }
+
+        .modal-close-svg path:last-child {
+            transition: all 0.3s ease 0.05s;
+        }
+
+        .modal-close:hover .modal-close-svg path:first-child {
+            stroke-width: 2.5;
+            filter: drop-shadow(0 0 3px rgba(0, 255, 136, 0.6));
+        }
+
+        .modal-close:hover .modal-close-svg path:last-child {
+            stroke-width: 1.5;
+            opacity: 0.7;
+        }
+
+        .modal-close:active .modal-close-svg path:first-child {
+            stroke-width: 2.2;
+        }
+
+        .modal-close:active .modal-close-svg path:last-child {
+            stroke-width: 1.2;
+            opacity: 0.8;
+        }
+
+        /* Efeito de brilho pulsante */
+        @keyframes modalClosePulse {
+            0%, 100% {
+                box-shadow: 
+                    0 4px 15px rgba(0, 0, 0, 0.3),
+                    0 0 20px rgba(0, 255, 136, 0.2),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            }
+            50% {
+                box-shadow: 
+                    0 4px 15px rgba(0, 0, 0, 0.3),
+                    0 0 25px rgba(0, 255, 136, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            }
+        }
+
+        .modal-close {
+            animation: modalClosePulse 3s ease-in-out infinite;
+        }
+
+        .modal-body {
+            position: relative;
+            z-index: 2;
+        }
+
+        .detail-section {
+            margin-bottom: var(--space-lg);
+        }
+
+        .detail-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: var(--space-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .detail-value {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--neon-green);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #00ff88;
+            transform: translateY(-2px);
+        }
+
+        .project-btn {
+            padding: var(--space-sm) var(--space-lg);
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.4);
+            color: var(--neon-green);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .project-btn:hover {
+            background: rgba(0, 255, 136, 0.2);
+            border-color: var(--neon-green);
+            transform: translateY(-2px);
+        }
+
+        .cancel-btn {
+            padding: var(--space-sm) var(--space-lg);
+            background: rgba(255, 59, 48, 0.1);
+            border: 1px solid rgba(255, 59, 48, 0.4);
+            color: #ff3b30;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .cancel-btn:hover {
+            background: rgba(255, 59, 48, 0.2);
+            border-color: #ff3b30;
+            transform: translateY(-2px);
+        }
+
+        .progress-steps {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-sm);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.completed {
+            background: rgba(40, 167, 69, 0.1);
+            border: 1px solid rgba(40, 167, 69, 0.3);
+        }
+
+        .progress-step.active {
+            background: rgba(0, 123, 255, 0.1);
+            border: 1px solid rgba(0, 123, 255, 0.3);
+        }
+
+        .progress-step.pending {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+        }
+
+        .step-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .progress-step.completed .step-icon {
+            background: #28a745;
+            color: white;
+        }
+
+        .progress-step.active .step-icon {
+            background: #007bff;
+            color: white;
+        }
+
+        .progress-step.pending .step-icon {
+            background: #ffc107;
+            color: white;
+        }
+
+        .step-info {
+            flex: 1;
+        }
+
+        .step-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-xs);
+        }
+
+        .step-description {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Modal de Status Avançado */
+        .status-badge {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .status-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .advanced-status-modal {
+            display: none;
+        }
+
+        .advanced-status-modal.active {
+            display: flex;
+        }
+
+        .status-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .status-detail-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: var(--space-md);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .status-detail-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: var(--space-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .status-detail-value {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .status-timeline {
+            margin-top: var(--space-lg);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 30px;
+            width: 2px;
+            height: calc(100% + var(--space-md));
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--neon-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-dot.completed {
+            background: #28a745;
+        }
+
+        .timeline-dot.pending {
+            background: #ffc107;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: var(--space-xs);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-xs);
+        }
+
+        .timeline-description {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .pedidos-title {
+                font-size: 2rem;
+            }
+            
+            .pedidos-subtitle {
+                font-size: 1rem;
+            }
+            
+            .pedidos-list {
+                grid-template-columns: 1fr;
+                gap: var(--space-lg);
+            }
+            
+            .pedido-card {
+                padding: 2rem;
+            }
+            
+            .pedido-header {
+                flex-direction: column;
+                gap: var(--space-lg);
+            }
+            
+            .search-container {
+                margin: 0 auto 2rem auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== DIVISÃO 0: BACKGROUND (FUNDO ANIMADO) ========== -->
+    <div class="tech-background">
+        <!-- Base Image Layer - FUNDO.png (locked, untouched) -->
+        <div class="base-image-layer"></div>
+        
+        <!-- Green Neon Smoke Layer - Continuous Animation -->
+        <div class="smoke-layer smoke-1"></div>
+        <div class="smoke-layer smoke-2"></div>
+        <div class="smoke-layer smoke-3"></div>
+        
+        <!-- Tech Background Container -->
+        <div class="tech-bg-container">
+            <div class="tech-particles"></div>
+            <div class="tech-grid"></div>
+        </div>
+    </div>
+
+    <!-- Partículas tecnológicas overlay -->
+    <div class="tech-particles-overlay" id="particlesOverlay"></div>
+
+    <!-- ========== DIVISÃO MEUS PEDIDOS ========== -->
+    <section class="pedidos-section">
+        <div class="pedidos-container">
+            <div class="pedidos-header">
+                <h1 class="pedidos-title">Meus Pedidos</h1>
+                <p class="pedidos-subtitle">Acompanhe o progresso dos seus projetos</p>
+            </div>
+            
+            <!-- Barra de Pesquisa -->
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Pesquisar pedidos por nome ou ID...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            
+            <div class="pedidos-list" id="pedidosList">
+                <!-- Cards de pedidos serão inseridos aqui via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Detalhes -->
+    <div class="modal-overlay modal-detalhes" id="detailsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Detalhes do Pedido</h2>
+                <button class="modal-close" onclick="closeDetailsModal()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="modal-close-svg">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body" id="detailsModalBody">
+                <!-- Conteúdo será inserido via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Status -->
+    <div class="modal-overlay modal-status" id="statusModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Painel de Progresso</h2>
+                <button class="modal-close" onclick="closeStatusModal()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="modal-close-svg">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body" id="statusModalBody">
+                <!-- Conteúdo será inserido via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Status Avançado -->
+    <div class="modal-overlay modal-status advanced-status-modal" id="advancedStatusModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Detalhes Avançados do Status</h2>
+                <button class="modal-close" onclick="closeAdvancedStatusModal()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="modal-close-svg">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body" id="advancedStatusModalBody">
+                <!-- Conteúdo será inserido via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="user-auth.js"></script>
+    <script src="cadastro-redirect.js"></script>
+    <script src="pacotes-scroll.js"></script>
+    <script src="comecar-redirect.js"></script>
+    <script type="module" src="auth.js"></script>
+    <script src="route-fallback.js"></script>
+    <script src="script.js"></script>
+    
+    <script>
+        // Dados de pedidos - estrutura vazia para backend
+        const pedidosMock = []; // TODO: remover dados mockados - pronto para backend
+
+        // Função para carregar pedidos do localStorage
+        function carregarPedidosLocalStorage() {
+            try {
+                const pedidosLS = JSON.parse(localStorage.getItem('pedidos') || '[]');
+                // Adaptar pedidos do localStorage para o formato esperado pela UI
+                return pedidosLS.map(p => ({
+                    nome: 'Pacote ' + p.pacote,
+                    data: p.data,
+                    id: p.id,
+                    status: p.status,
+                    progresso: p.progresso || 10, // Progresso do admin ou inicial 10%
+                    descricao: p.descricao, // Descrição exata do usuário
+                    cliente: p.nome,
+                    email: p.email,
+                    projetoUrl: '#',
+                    tempoEstimado: p.pacote === 'Básico' ? '3 a 5 dias' : (p.pacote === 'Intermediário' ? '5 a 7 dias' : '5 a 10 dias'),
+                    preco: p.valor || (p.pacote === 'Básico' ? 'R$ 149,90' : (p.pacote === 'Intermediário' ? 'R$ 299,90' : 'R$ 479,90')),
+                    pacote: p.pacote,
+                    isReal: true // Flag para identificar pedidos reais
+                }));
+            } catch (e) {
+                return [];
+            }
+        }
+
+        // TODO: integrar com backend - apenas pedidos reais do localStorage
+        function getTodosPedidos() {
+            const pedidosReais = carregarPedidosLocalStorage();
+            return pedidosReais; // Apenas pedidos reais, sem dados mockados
+        }
+
+        // Referência atualizada para todos os pedidos
+        let pedidos = getTodosPedidos();
+
+        // Função para renderizar os pedidos
+        function renderPedidos(pedidosFiltrados = null) {
+            if (!pedidosFiltrados) {
+                pedidos = getTodosPedidos(); // Recarregar do localStorage
+                pedidosFiltrados = pedidos;
+            }
+            const pedidosList = document.getElementById('pedidosList');
+            
+            if (pedidosFiltrados.length === 0) {
+                // Mensagem diferente para pesquisa vazia vs. sem pedidos
+                const searchTerm = document.getElementById('searchInput')?.value?.trim();
+                if (searchTerm) {
+                    pedidosList.innerHTML = '<div class="no-results">Nenhum pedido encontrado para esta pesquisa.</div>';
+                } else {
+                    pedidosList.innerHTML = '<div class="no-results">Nenhum pedido encontrado. Crie seu primeiro pedido para começar!</div>';
+                }
+                return;
+            }
+            
+            pedidosList.innerHTML = '';
+
+            pedidosFiltrados.forEach(pedido => {
+                // Determinar se é pedido real (do localStorage) ou mock
+                const isReal = pedido.isReal || false;
+                const statusColor = getStatusColor(pedido.status);
+                const statusIcon = getStatusIcon(pedido.status);
+                
+                const pedidoCard = document.createElement('div');
+                pedidoCard.className = 'pedido-card';
+                pedidoCard.innerHTML = `
+                    <div class="pedido-header">
+                        <div class="pedido-info">
+                            <h3 class="pedido-nome">${pedido.nome}</h3>
+                            <div class="pedido-meta">
+                                <span class="pedido-data">
+                                    <i class="far fa-calendar"></i>
+                                    ${pedido.data}
+                                </span>
+                                <span class="pedido-id">
+                                    <i class="fas fa-hashtag"></i>
+                                    ${pedido.id}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="pedido-status">
+                            <span class="status-badge ${statusColor}" onclick="openAdvancedStatusModal('${pedido.id}')" style="cursor: pointer;">
+                                ${statusIcon}
+                                ${pedido.status}
+                            </span>
+                        </div>
+                    </div>
+                    ${isReal ? `
+                <div class="pedido-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${pedido.progresso}%; ${pedido.status === 'Cancelado' ? 'background: linear-gradient(90deg, #ff6b6b, #ff4444);' : ''}"></div>
+                    </div>
+                    <span class="progress-text" style="${pedido.status === 'Cancelado' ? 'color: #ff6b6b;' : ''}">
+                        <i class="fas fa-chart-line"></i>
+                        ${pedido.status === 'Cancelado' ? 'Cancelado' : pedido.progresso + '%'}
+                    </span>
+                </div>
+                ` : '<div class="pedido-progress" style="margin: 10px 0;"><span style="color: var(--neon-green); font-size: 0.85rem;"><i class="fas fa-clock"></i> Aguardando início do projeto</span></div>'}
+                    <div class="pedido-actions">
+                        ${!isReal ? `<button class="project-btn" onclick="accessProject('${pedido.projetoUrl}')">
+                            <i class="fas fa-external-link-alt"></i>
+                            Acessar projeto
+                        </button>` : `<button class="project-btn" style="background: rgba(0,255,136,0.1); border-color: var(--neon-green); color: var(--neon-green);" onclick="openDetailsModal('${pedido.id}')">
+                            <i class="fas fa-info-circle"></i>
+                            Ver detalhes
+                        </button>`}
+                    </div>
+                `;
+                
+                // Adicionar evento de clique no card para abrir detalhes
+                pedidoCard.addEventListener('click', function(e) {
+                    // Não abrir modal se clicou no botão de status ou botão de projeto
+                    if (!e.target.closest('.project-btn') && !e.target.closest('.status-badge')) {
+                        openDetailsModal(pedido.id);
+                    }
+                });
+                
+                pedidosList.appendChild(pedidoCard);
+            });
+        }
+
+        function getStatusColor(status) {
+            switch(status) {
+                case 'Em análise': return 'status-analise';
+                case 'Em desenvolvimento': return 'status-desenvolvimento';
+                case 'Concluído': return 'status-concluido';
+                case 'Cancelado': return 'status-cancelado'; // Vermelho
+                case 'Em andamento': return 'status-desenvolvimento'; // Azul
+                default: return 'status-analise';
+            }
+        }
+
+        function getStatusIcon(status) {
+            switch(status) {
+                case 'Em análise': return '<i class="fas fa-search"></i>';
+                case 'Em desenvolvimento': return '<i class="fas fa-code"></i>';
+                case 'Concluído': return '<i class="fas fa-check-circle"></i>';
+                case 'Cancelado': return '<i class="fas fa-times-circle"></i>';
+                case 'Em andamento': return '<i class="fas fa-spinner fa-spin"></i>';
+                default: return '<i class="fas fa-search"></i>';
+            }
+        }
+
+        // Função de pesquisa
+        function pesquisarPedidos(termo) {
+            const termoLower = termo.toLowerCase().trim();
+            
+            if (termoLower === '') {
+                renderPedidos();
+                return;
+            }
+            
+            const pedidosFiltrados = pedidos.filter(pedido => {
+                return pedido.nome.toLowerCase().includes(termoLower) || 
+                       pedido.id.toLowerCase().includes(termoLower);
+            });
+            
+            renderPedidos(pedidosFiltrados);
+        }
+
+        // Criar partículas tecnológicas
+        function criarParticulas() {
+            const particlesOverlay = document.getElementById('particlesOverlay');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'tech-particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 25 + 's';
+                particle.style.animationDuration = (20 + Math.random() * 15) + 's';
+                particlesOverlay.appendChild(particle);
+            }
+        }
+
+        // Funções dos Modais
+        function openDetailsModal(pedidoId) {
+            const pedido = pedidos.find(p => p.id === pedidoId);
+            if (!pedido) return;
+            
+            const modalBody = document.getElementById('detailsModalBody');
+            modalBody.innerHTML = `
+                <div class="detail-section">
+                    <div class="detail-label">Nome do Projeto</div>
+                    <div class="detail-value">${pedido.nome}</div>
+                </div>
+                
+                <div class="detail-section">
+                    <div class="detail-label">ID do Pedido</div>
+                    <div class="detail-value">${pedido.id}</div>
+                </div>
+                
+                <div class="detail-section">
+                    <div class="detail-label">Data do Pedido</div>
+                    <div class="detail-value">${pedido.data}</div>
+                </div>
+                
+                <div class="detail-section">
+                    <div class="detail-label">Status Atual</div>
+                    <div class="detail-value">
+                        <span class="status-badge ${getStatusColor(pedido.status)}">
+                            ${getStatusIcon(pedido.status)}
+                            ${pedido.status}
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <div class="detail-label">Descrição</div>
+                    <div class="detail-value">${pedido.descricao}</div>
+                </div>
+                
+                <div class="detail-section">
+                    <div class="detail-label">Cliente</div>
+                    <div class="detail-value">${pedido.cliente}</div>
+                </div>
+                
+                <div class="detail-section">
+                    <div class="detail-label">Email</div>
+                    <div class="detail-value">${pedido.email}</div>
+                </div>
+                
+                <div class="detail-section">
+                    <div class="detail-label">Preço</div>
+                    <div class="detail-value">${pedido.preco}</div>
+                </div>
+                
+                <div class="detail-section">
+                    <div class="detail-label">Link do Projeto</div>
+                    <div class="detail-value">
+                        ${pedido.status === 'Concluído' ? `
+                            <a href="${pedido.projetoUrl}" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                ${pedido.projetoUrl}
+                            </a>
+                        ` : 'Aguardando liberação do projeto'}
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('detailsModal').classList.add('active');
+        }
+
+        function closeDetailsModal() {
+            document.getElementById('detailsModal').classList.remove('active');
+        }
+
+        function openStatusModal(pedidoId) {
+            const pedido = pedidos.find(p => p.id === pedidoId);
+            if (!pedido) return;
+            
+            const steps = getProgressSteps(pedido.status);
+            
+            const modalBody = document.getElementById('statusModalBody');
+            modalBody.innerHTML = `
+                <div class="detail-section">
+                    <div class="detail-label">Nome do Projeto</div>
+                    <div class="detail-value">${pedido.nome}</div>
+                </div>
+                
+                <div class="detail-section">
+                    <div class="detail-label">Status Atual</div>
+                    <div class="detail-value">
+                        <span class="status-badge ${getStatusColor(pedido.status)}">
+                            ${getStatusIcon(pedido.status)}
+                            ${pedido.status}
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Barra de Progresso Detalhada (AGORA DENTRO DO MODAL) -->
+                <div class="detail-section">
+                    <div class="detail-label">Progresso Detalhado</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${pedido.progresso}%"></div>
+                    </div>
+                    <div class="detail-value" style="text-align: center; margin-top: var(--space-sm);">
+                        <span style="font-size: 1.4rem; font-weight: 700; color: var(--neon-green);">
+                            ${pedido.progresso}%
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <div class="detail-label">Tempo Estimado</div>
+                    <div class="detail-value">
+                        <i class="far fa-clock"></i>
+                        ${pedido.tempoEstimado}
+                    </div>
+                </div>
+                
+                <div class="status-extra-info">
+                    <p>Tempo restante: ${pedido.tempoRestante || "3 dias"}</p>
+                    <p>Finalização estimada: ${pedido.dataFinal || "25/04/2026"}</p>
+                </div>
+                
+                <div class="detail-section">
+                    <div class="detail-label">Etapas do Processo</div>
+                    <div class="progress-steps">
+                        ${steps.map(step => `
+                            <div class="progress-step ${step.status}">
+                                <div class="step-icon">${step.icon}</div>
+                                <div class="step-info">
+                                    <div class="step-name">${step.name}</div>
+                                    <div class="step-description">${step.description}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <button class="cancel-btn" onclick="cancelPedido('${pedido.id}')">
+                        <i class="fas fa-times-circle"></i>
+                        Cancelar pedido
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('statusModal').classList.add('active');
+        }
+
+        function closeStatusModal() {
+            document.getElementById('statusModal').classList.remove('active');
+        }
+
+        function openAdvancedStatusModal(pedidoId) {
+            const pedido = pedidos.find(p => p.id === pedidoId);
+            if (!pedido) return;
+            
+            // Parar propagação para não interferir com clique do card
+            event.stopPropagation();
+            
+            const statusDetails = getAdvancedStatusDetails(pedido.status);
+            const timeline = getStatusTimeline(pedido);
+            
+            const modalBody = document.getElementById('advancedStatusModalBody');
+            modalBody.innerHTML = `
+                <div class="detail-section">
+                    <div class="detail-label">Status Atual</div>
+                    <div class="detail-value">
+                        <span class="status-badge ${getStatusColor(pedido.status)}">
+                            ${getStatusIcon(pedido.status)}
+                            ${pedido.status}
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Barra de Progresso Detalhada no Modal Avançado -->
+                <div class="detail-section">
+                    <div class="detail-label">Progresso Detalhado</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${pedido.progresso}%"></div>
+                    </div>
+                    <div class="detail-value" style="text-align: center; margin-top: var(--space-sm);">
+                        <span style="font-size: 1.4rem; font-weight: 700; color: var(--neon-green);">
+                            ${pedido.progresso}%
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <div class="detail-label">Informações de Tempo</div>
+                    <div class="status-details-grid">
+                        <div class="status-detail-item">
+                            <div class="status-detail-label">Tempo restante</div>
+                            <div class="status-detail-value">${pedido.status === 'Concluído' ? 'Concluído' : '3 dias'}</div>
+                        </div>
+                        <div class="status-detail-item">
+                            <div class="status-detail-label">Entrega estimada</div>
+                            <div class="status-detail-value">${pedido.status === 'Concluído' ? 'Entregue' : '28/04/2026'}</div>
+                        </div>
+                    </div>
+                    <div class="detail-value" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); margin-top: var(--space-xs);">
+                        Previsão baseada no progresso atual do projeto.
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <div class="detail-label">Equipe</div>
+                    <div class="detail-value">Equipe: 2 desenvolvedores</div>
+                </div>
+                
+                <div class="detail-section">
+                    <div class="detail-label">Tempo restante</div>
+                    <div class="detail-value">Tempo restante: 3 dias</div>
+                </div>
+                
+                <div class="detail-section">
+                    <div class="detail-label">Entrega estimada</div>
+                    <div class="detail-section">
+                        <div class="detail-label">Tempo restante</div>
+                        <div class="detail-value">Tempo restante: 3 dias</div>
+                    </div>
+
+                    <div class="detail-section">
+                        <div class="detail-label">Entrega estimada</div>
+                        <div class="detail-value">Entrega estimada: 25/04/2026</div>
+                    </div>
+                </div>
+                
+                <div class="status-details-grid">
+                    <div class="status-detail-item">
+                        <div class="status-detail-label">Progresso</div>
+                        <div class="status-detail-value">${pedido.progresso}%</div>
+                    </div>
+                    <div class="status-detail-item">
+                        <div class="status-detail-label">Tempo Estimado</div>
+                        <div class="status-detail-value">${pedido.tempoEstimado}</div>
+                    </div>
+                    <div class="status-detail-item">
+                        <div class="status-detail-label">Prioridade</div>
+                        <div class="status-detail-value">${statusDetails.prioridade}</div>
+                    </div>
+                    <div class="status-detail-item">
+                        <div class="status-detail-label">Equipe</div>
+                        <div class="status-detail-value">${statusDetails.equipe}</div>
+                    </div>
+                    <div class="status-detail-item">
+                        <div class="status-detail-label">Previsão</div>
+                        <div class="status-detail-value">${statusDetails.previsao}</div>
+                    </div>
+                    <div class="status-detail-item">
+                        <div class="status-detail-label">Complexidade</div>
+                        <div class="status-detail-value">${statusDetails.complexidade}</div>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <div class="detail-label">Descrição do Status</div>
+                    <div class="detail-value">${statusDetails.descricao}</div>
+                </div>
+                
+                <div class="status-timeline">
+                    <div class="detail-label">Histórico do Status</div>
+                    ${timeline.map(item => `
+                        <div class="timeline-item">
+                            <div class="timeline-dot ${item.type}"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">${item.date}</div>
+                                <div class="timeline-title">${item.title}</div>
+                                <div class="timeline-description">${item.description}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            document.getElementById('advancedStatusModal').classList.add('active');
+        }
+
+        function closeAdvancedStatusModal() {
+            document.getElementById('advancedStatusModal').classList.remove('active');
+        }
+
+        function getAdvancedStatusDetails(status) {
+            const details = {
+                'Em análise': {
+                    prioridade: 'Alta',
+                    equipe: '2 Analistas',
+                    previsao: '2-3 dias',
+                    complexidade: 'Média',
+                    descricao: 'Seu projeto está em fase de análise técnica. Nossa equipe está avaliando requisitos, definindo arquitetura e preparando o planejamento detalhado.'
+                },
+                'Em desenvolvimento': {
+                    prioridade: 'Média',
+                    equipe: '3 Desenvolvedores',
+                    previsao: '10-15 dias',
+                    complexidade: 'Alta',
+                    descricao: 'Desenvolvimento ativo em andamento. Nossa equipe está codificando as funcionalidades principais e implementando a arquitetura definida.'
+                },
+                'Concluído': {
+                    prioridade: 'Baixa',
+                    equipe: '1 QA Tester',
+                    previsao: 'Concluído',
+                    complexidade: 'Resolvida',
+                    descricao: 'Projeto concluído com sucesso! Todos os testes foram realizados e o sistema está pronto para entrega e uso em produção.'
+                }
+            };
+            
+            return details[status] || details['Em análise'];
+        }
+
+        function getStatusTimeline(pedido) {
+            const baseTimeline = [
+                {
+                    date: pedido.data,
+                    title: 'Pedido Iniciado',
+                    description: 'Pedido recebido e registrado em nosso sistema.',
+                    type: 'completed'
+                }
+            ];
+            
+            if (pedido.status === 'Em análise') {
+                baseTimeline.push({
+                    date: '11/04/2026',
+                    title: 'Análise Iniciada',
+                    description: 'Equipe de análise começou a avaliar os requisitos do projeto.',
+                    type: 'completed'
+                });
+                baseTimeline.push({
+                    date: '12/04/2026',
+                    title: 'Aguardando Aprovação',
+                    description: 'Análise técnica concluída, aguardando aprovação do cliente.',
+                    type: 'pending'
+                });
+            } else if (pedido.status === 'Em desenvolvimento') {
+                baseTimeline.push({
+                    date: '11/04/2026',
+                    title: 'Análise Concluída',
+                    description: 'Análise técnica aprovada e arquitetura definida.',
+                    type: 'completed'
+                });
+                baseTimeline.push({
+                    date: '12/04/2026',
+                    title: 'Desenvolvimento Iniciado',
+                    description: 'Equipe de desenvolvimento começou a implementar as funcionalidades.',
+                    type: 'completed'
+                });
+                baseTimeline.push({
+                    date: '15/04/2026',
+                    title: 'Desenvolvimento em Andamento',
+                    description: '50% do projeto já desenvolvido, seguindo o cronograma.',
+                    type: 'completed'
+                });
+            } else if (pedido.status === 'Concluído') {
+                baseTimeline.push({
+                    date: '11/04/2026',
+                    title: 'Análise Concluída',
+                    description: 'Análise técnica aprovada e arquitetura definida.',
+                    type: 'completed'
+                });
+                baseTimeline.push({
+                    date: '12/04/2026',
+                    title: 'Desenvolvimento Concluído',
+                    description: 'Todas as funcionalidades implementadas com sucesso.',
+                    type: 'completed'
+                });
+                baseTimeline.push({
+                    date: '14/04/2026',
+                    title: 'Testes Finalizados',
+                    description: 'Todos os testes de qualidade e integração aprovados.',
+                    type: 'completed'
+                });
+                baseTimeline.push({
+                    date: '15/04/2026',
+                    title: 'Projeto Entregue',
+                    description: 'Projeto entregue ao cliente e publicado em produção.',
+                    type: 'completed'
+                });
+            }
+            
+            return baseTimeline;
+        }
+
+        function getProgressSteps(status) {
+            const allSteps = [
+                {
+                    name: "Análise",
+                    description: "Análise dos requisitos e planejamento",
+                    icon: "1",
+                    status: "completed"
+                },
+                {
+                    name: "Desenvolvimento",
+                    description: "Desenvolvimento do projeto",
+                    icon: "2",
+                    status: status === "Em análise" ? "pending" : (status === "Em desenvolvimento" ? "active" : "completed")
+                },
+                {
+                    name: "Finalização",
+                    description: "Testes e entrega final",
+                    icon: "3",
+                    status: status === "Concluído" ? "completed" : "pending"
+                }
+            ];
+            
+            return allSteps;
+        }
+
+        function accessProject(url) {
+            window.open(url, "_blank");
+        }
+
+        function cancelPedido(pedidoId) {
+            if (confirm(`Tem certeza que deseja cancelar o pedido ${pedidoId}?`)) {
+                // Verificar se é pedido real (do localStorage)
+                const pedido = pedidos.find(p => p.id === pedidoId);
+                if (pedido && pedido.isReal) {
+                    // Marcar como cancelado no localStorage (não remover)
+                    let pedidosLS = JSON.parse(localStorage.getItem('pedidos') || '[]');
+                    const pedidoIndex = pedidosLS.findIndex(p => p.id === pedidoId);
+                    if (pedidoIndex !== -1) {
+                        pedidosLS[pedidoIndex].status = 'Cancelado';
+                        pedidosLS[pedidoIndex].progresso = 0;
+                        localStorage.setItem('pedidos', JSON.stringify(pedidosLS));
+                    }
+                }
+
+                // Atualizar status visualmente
+                const pedidoIndex = pedidos.findIndex(p => p.id === pedidoId);
+                if (pedidoIndex > -1) {
+                    pedidos[pedidoIndex].status = 'Cancelado';
+                    pedidos[pedidoIndex].progresso = 0;
+                    renderPedidos();
+                    closeStatusModal();
+                }
+            }
+        }
+
+        // Fechar modals ao clicar fora
+        document.getElementById('detailsModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDetailsModal();
+            }
+        });
+
+        document.getElementById('statusModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeStatusModal();
+            }
+        });
+
+        document.getElementById('advancedStatusModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAdvancedStatusModal();
+            }
+        });
+
+        // Inicializar quando carregar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPedidos();
+            criarParticulas();
+            
+            // Setup da pesquisa
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', function(e) {
+                pesquisarPedidos(e.target.value);
+            });
+        });
+
+        // Sincronização em tempo real entre abas
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'pedidos') {
+                console.log('Pedidos atualizados em outra aba - recarregando...');
+                // Recarregar pedidos do localStorage e atualizar UI
+                pedidos = getTodosPedidos();
+                renderPedidos();
+            }
+        });
+    </script>
+
+    <style>
+        /* Estilos específicos da página Meus Pedidos */
+        .pedidos-section {
+            min-height: 100vh;
+            padding: 120px 0 80px;
+            position: relative;
+        }
+
+        .pedidos-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+
+        .pedidos-header {
+            text-align: center;
+            margin-bottom: var(--space-3xl);
+        }
+
+        .pedidos-title {
+            font-size: 3rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.15);
+        }
+
+        .pedidos-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pedidos-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-xl);
+        }
+
+        .pedido-card {
+            background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+            border-radius: 24px;
+            border: 2px solid rgba(0, 255, 136, 0.4);
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .pedido-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 255, 136, 0.05) 0%, 
+                transparent 50%, 
+                rgba(0, 136, 255, 0.03) 100%);
+            opacity: 0.9;
+        }
+
+        .pedido-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 40px 120px rgba(0, 0, 0, 0.8),
+                0 0 40px rgba(0, 255, 136, 0.25),
+                0 0 80px rgba(0, 255, 136, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border-color: rgba(0, 255, 136, 0.6);
+        }
+
+        .pedido-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-lg);
+            position: relative;
+            z-index: 1;
+        }
+
+        .pedido-nome {
+            font-size: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .pedido-meta {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+
+        .pedido-data,
+        .pedido-id {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .pedido-data i,
+        .pedido-id i {
+            color: var(--neon-green);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .status-analise {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            border: 1px solid rgba(255, 193, 7, 0.4);
+        }
+
+        .status-desenvolvimento {
+            background: rgba(0, 123, 255, 0.2);
+            color: #007bff;
+            border: 1px solid rgba(0, 123, 255, 0.4);
+        }
+
+        .status-concluido {
+            background: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+            border: 1px solid rgba(40, 167, 69, 0.4);
+        }
+
+        .status-cancelado {
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 107, 107, 0.4);
+        }
+
+        .pedido-progress {
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: var(--space-xs);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-green), #00cc6a);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .pedidos-title {
+                font-size: 2rem;
+            }
+            
+            .pedidos-subtitle {
+                font-size: 1rem;
+            }
+            
+            .pedidos-list {
+                grid-template-columns: 1fr;
+                gap: var(--space-lg);
+            }
+            
+            .pedido-card {
+                padding: 1.5rem;
+            }
+            
+            .pedido-header {
+                flex-direction: column;
+                gap: var(--space-md);
+            }
+        }
+    </style>
+</body>
+</html>
