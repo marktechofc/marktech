@@ -1,0 +1,448 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark tech - Future of Technology</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700;800;900&family=Chakra+Petch:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+        <div class="tech-background">
+        <!-- Base Image Layer - FUNDO.png (locked, untouched) -->
+        <div class="base-image-layer"></div>
+        
+        <!-- Green Neon Smoke Layer - Continuous Animation -->
+        <div class="smoke-layer">
+            <div class="smoke smoke-1"></div>
+            <div class="smoke smoke-2"></div>
+            <div class="smoke smoke-3"></div>
+        </div>
+        
+        <!-- Existing Effects (preserved) -->
+        <div class="neural-network" id="neuralNetwork"></div>
+        <div class="particle-field"></div>
+        <div class="grid-overlay"></div>
+        <div class="gradient-orbs"></div>
+    </div>
+
+    <!-- ========== DIVISÃO HEADER: NAVEGAÇÃO ========== -->
+    <header class="nav-header">
+        <nav class="nav-container">
+            <div class="brand">
+                <span class="brand-black">Mark</span><span class="brand-neon">tech</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#hero" class="nav-link">Início</a>
+                <a href="cadastro.html" class="nav-link">Cadastro</a>
+                <a href="meus-pedidos.html" class="nav-link">Meus pedidos</a>
+                <a href="#pricing" class="nav-link">Pacotes</a>
+                <a href="#portfolio" class="nav-link">Portfólio</a>
+                <a href="#contact" class="nav-link">Contato</a>
+                <div class="nav-actions">
+                    <button id="mainActionBtn" class="premium-btn" onclick="window.location.href='cadastro.html'">Começar</button>
+                    <div class="user-profile" id="userProfile" style="display: none;">
+                        <img src="" alt="Perfil" class="profile-img">
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+        <section id="hero" class="hero-section">
+        
+        <!-- Background Effects -->
+        <div class="hero-bg-grid"></div>
+        <div class="hero-particles">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="brand-badge">
+                    <span class="badge-dot"></span>
+                    <span class="badge-text">Mark Tech</span>
+                </div>
+                <h1 class="hero-title">
+                    Pare de perder clientes.<br>
+                    <span class="title-neon">Comece a escalar.</span>
+                </h1>
+                <div class="hero-line"></div>
+                <p class="hero-description">
+                    Sites, sistemas e apps com performance real e foco em resultado.
+                </p>
+                <div class="hero-actions">
+                    <button class="premium-btn primary">Começar agora</button>
+                    <button class="premium-btn secondary">Ver projetos</button>
+                </div>
+                
+                <!-- Stats flutuantes -->
+                <div class="hero-stats reveal">
+                    <div class="stat-item">
+                        <span class="stat-number">150+</span>
+                        <span class="stat-label">Projetos</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Satisfação</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">24h</span>
+                        <span class="stat-label">Suporte</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dashboard Mockup -->
+            <div class="hero-dashboard">
+                <div class="dashboard-frame">
+                    <div class="dashboard-header-mock">
+                        <span class="mock-logo">Seu site Agora</span>
+                        <div class="mock-nav">
+                            <span>Início</span>
+                            <span>Pacotes</span>
+                            <span>Portfólio</span>
+                            <span class="mock-btn">Começar</span>
+                        </div>
+                    </div>
+                    <div class="dashboard-body">
+                        <div class="dashboard-left">
+                            <h3 class="dash-title">MAIS CLIENTES COM<br><span class="dash-highlight">SITE PROFISSIONAL</span></h3>
+                            <ul class="dash-features">
+                                <li><i class="fas fa-check"></i> Site moderno e responsivo</li>
+                                <li><i class="fas fa-check"></i> Carregamento ultra rápido</li>
+                                <li><i class="fas fa-check"></i> Focado em conversão</li>
+                                <li><i class="fas fa-check"></i> Pronto para vender 24h</li>
+                            </ul>
+                            <button class="dash-btn">Começar agora</button>
+                        </div>
+                        <div class="dashboard-right">
+                            <div class="dash-stats-row">
+                                <div class="dash-stat">
+                                    <span class="dash-stat-value">150+</span>
+                                    <span class="dash-stat-label">Sites Entregues</span>
+                                </div>
+                                <div class="dash-stat">
+                                    <span class="dash-stat-value">98%</span>
+                                    <span class="dash-stat-label">Satisfação</span>
+                                </div>
+                            </div>
+                            <div class="dash-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill"></div>
+                                </div>
+                                <span class="progress-label">Suporte real garantido</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+
+
+    <!-- ========== SEÇÃO PACOTES (SIMPLES E VISÍVEL) ========== -->
+    <section class="pacotes reveal" id="pacotes">
+        <h2>Escolha seu Pacote</h2>
+        
+        <!-- PACOTE BÁSICO -->
+        <div class="pacote-card reveal">
+            <h3>PACOTE BÁSICO</h3>
+            <div class="preco">R$ 149,90</div>
+            <ul>
+                <li><i class="fas fa-check"></i> Até 3 páginas</li>
+                <li><i class="fas fa-check"></i> Design moderno ou minimalista</li>
+                <li><i class="fas fa-check"></i> Site 100% responsivo</li>
+                <li><i class="fas fa-check"></i> Estrutura otimizada para SEO</li>
+                <li><i class="fas fa-check"></i> Ideal para presença online rápida</li>
+            </ul>
+            <div class="prazo-entrega">
+                <i class="fas fa-clock"></i>
+                <span>Entrega em 3 a 5 dias</span>
+            </div>
+            <button class="btn-contratar" onclick="selecionarPacote('pedido-basico.html')">Contratar</button>
+        </div>
+        
+        <!-- PACOTE INTERMEDIÁRIO -->
+        <div class="pacote-card featured reveal">
+            <div class="selo-destaque">
+                <i class="fas fa-fire"></i>
+                <span>MAIS ESCOLHIDO</span>
+            </div>
+            <h3>PACOTE INTERMEDIÁRIO</h3>
+            <div class="preco">R$ 299,90</div>
+            <ul>
+                <li><i class="fas fa-check"></i> Até 5 páginas</li>
+                <li><i class="fas fa-check"></i> Design moderno, minimalista ou tecnológico</li>
+                <li><i class="fas fa-check"></i> Sistema de login + avaliações</li>
+                <li><i class="fas fa-check"></i> Dashboard simples</li>
+                <li><i class="fas fa-check"></i> Foco em conversão de clientes</li>
+            </ul>
+            <div class="prazo-entrega">
+                <i class="fas fa-clock"></i>
+                <span>Entrega em 5 a 7 dias</span>
+            </div>
+            <button class="btn-contratar" onclick="selecionarPacote('pedido-intermediario.html')">Contratar</button>
+        </div>
+        
+        <!-- PACOTE AVANÇADO -->
+        <div class="pacote-card reveal">
+            <h3>PACOTE AVANÇADO</h3>
+            <div class="preco">R$ 479,90</div>
+            <ul>
+                <li><i class="fas fa-check"></i> Até 8 páginas</li>
+                <li><i class="fas fa-check"></i> Design moderno, tecnológico ou corporativo</li>
+                <li><i class="fas fa-check"></i> Login + avaliações + pagamento</li>
+                <li><i class="fas fa-check"></i> Dashboard avançado</li>
+                <li><i class="fas fa-check"></i> Estrutura completa para escalar vendas</li>
+            </ul>
+            <div class="prazo-entrega">
+                <i class="fas fa-clock"></i>
+                <span>Entrega em 5 a 10 dias</span>
+            </div>
+            <button class="btn-contratar" onclick="selecionarPacote('pedido-avancado.html')">Contratar</button>
+        </div>
+    </section>
+
+    <!-- ========== SEÇÃO RECURSOS ========== -->
+    <section id="recursos" class="recursos-section">
+        <div class="section-container">
+            <div class="recursos-header">
+                <div class="recursos-stats">
+                    <div class="recurso-stat">
+                        <span class="recurso-number">150+</span>
+                        <span class="recurso-label">Projetos</span>
+                        <p>+ de 150 projetos criados, rodando com sucesso</p>
+                    </div>
+                    <div class="recurso-stat">
+                        <span class="recurso-number">98%</span>
+                        <span class="recurso-label">Satisfação</span>
+                        <p>Avaliação média de nossos clientes</p>
+                    </div>
+                    <div class="recurso-stat">
+                        <span class="recurso-number">24h</span>
+                        <span class="recurso-label">Suporte</span>
+                        <p>Suporte rápido e eficiente, 24 horas por dia</p>
+                    </div>
+                </div>
+                <h2 class="recursos-title">Tudo que você precisa para crescer rápido</h2>
+                <div class="recursos-grid">
+                    <div class="recurso-card">
+                        <div class="recurso-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Cadastro instantâneo</h3>
+                        <p>Registre clientes e pedidos em segundos com um clique</p>
+                    </div>
+                    <div class="recurso-card">
+                        <div class="recurso-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>Dashboard intuitivo</h3>
+                        <p>Tenha controle total: tudo que você precisa em um só lugar</p>
+                    </div>
+                    <div class="recurso-card">
+                        <div class="recurso-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>Suporte ágil 24 horas</h3>
+                        <p>Conte com nosso time de suporte sempre que precisar</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Nossos Projetos</h2>
+                <p class="section-subtitle">Cases de sucesso que impulsionam negócios</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-visual">
+                        <div class="portfolio-image">
+                            <img src="https://via.placeholder.com/600x400/0a0a0a/00ff88?text=Site+Restaurante" alt="Site Restaurante">
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>Site Restaurante</h3>
+                                <p>+150% pedidos online</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-visual">
+                        <div class="portfolio-image">
+                            <img src="https://via.placeholder.com/600x400/0a0a0a/0088ff?text=E-commerce" alt="E-commerce">
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>Loja Virtual</h3>
+                                <p>+200% vendas online</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-visual">
+                        <div class="portfolio-image">
+                            <img src="https://via.placeholder.com/600x400/0a0a0a/8800ff?text=App+Mobile" alt="App Mobile">
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>App Delivery</h3>
+                                <p>+300% entregas realizadas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section id="final-cta" class="cta-section">
+        
+        <!-- Background effects -->
+        <div class="cta-bg-grid"></div>
+        <div class="cta-particles">
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        
+        <div class="cta-container">
+            <div class="cta-visual">
+                <div class="cta-icon floating">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="cta-orb orb-1"></div>
+                <div class="cta-orb orb-2"></div>
+            </div>
+            
+            <div class="cta-content">
+                <h2>Pronto pra escalar<br><span class="title-neon">seu negócio?</span></h2>
+                <p>Vamos conversar sobre seu projeto. Sem compromisso.</p>
+                <button class="premium-btn primary large">
+                    <i class="fas fa-paper-plane"></i>
+                    Falar agora
+                </button>
+                <div class="cta-trust">
+                    <span><i class="fas fa-check-circle"></i> Resposta em 24h</span>
+                    <span><i class="fas fa-lock"></i> Orçamento seguro</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand">
+                    <span class="brand-black">Mark</span><span class="brand-neon">tech</span>
+                </div>
+                <div class="footer-contact">
+                    <p><i class="fas fa-envelope"></i> contato@marktech.com.br</p>
+                    <p><i class="fas fa-phone"></i> (11) 99999-8888</p>
+                    <p><i class="fas fa-map-marker-alt"></i> São Paulo - SP</p>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <p class="footer-copy">&copy; 2024 Mark Tech</p>
+        </div>
+    </footer>
+
+    <script src="neural-network.js"></script>
+    <!-- Dashboard 3D Animation System -->
+    <script src="dashboard-3d.js"></script>
+    <!-- Pacotes 3D Advanced Animation System -->
+    <script src="pacotes-3d-advanced.js"></script>
+        <!-- Card Rotation Click System -->
+    <script src="card-rotation.js"></script>
+    <!-- User Authentication System -->
+    <script src="user-auth.js"></script>
+    <!-- Cadastro Redirect Force System -->
+    <script src="cadastro-redirect.js"></script>
+    <!-- Pacotes Smooth Scroll System -->
+    <script src="pacotes-scroll.js"></script>
+    <!-- Começar Redirect Force System -->
+    <script src="comecar-redirect.js"></script>
+    <!-- Firebase Authentication System -->
+    <script type="module" src="./js/firebase.js"></script>
+    <script type="module" src="./js/auth.js"></script>
+    <!-- UI Dynamic Button System -->
+    <script type="module" src="./js/ui.js"></script>
+    
+    <script>
+        // Forçar redirecionamento do botão "Meus pedidos"
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('*').forEach(el => {
+                if (el.textContent.trim() === "Meus pedidos") {
+                    el.onclick = function() {
+                        window.location.href = "meus-pedidos.html";
+                        return false;
+                    };
+                    el.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        window.location.href = "meus-pedidos.html";
+                    });
+                }
+            });
+        });
+        
+        // Função para selecionar pacote e salvar página de destino
+        function selecionarPacote(pagina) {
+            // salva como backup
+            localStorage.setItem("selectedPackage", pagina);
+
+            // envia via URL (principal)
+            window.location.href = `cadastro.html?pacote=${encodeURIComponent(pagina)}`;
+        }
+
+        // Script para clique em pacotes com autenticação
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('[data-pacote]').forEach(card => {
+                card.addEventListener('click', function() {
+                    const pacote = this.getAttribute('data-pacote');
+                    
+                    // Mapear pacote para página de destino
+                    const packagePages = {
+                        'basico': 'pedido-basico.html',
+                        'intermediario': 'pedido-intermediario.html', 
+                        'avancado': 'pedido-avancado.html'
+                    };
+                    
+                    const paginaDestino = packagePages[pacote] || 'pedido-basico.html';
+                    selecionarPacote(paginaDestino);
+                });
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
