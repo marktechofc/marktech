@@ -1,0 +1,626 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido - PACOTE INTERMEDIÁRIO | Mark Tech</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700;800;900&family=Chakra+Petch:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background -->
+    <div class="tech-background">
+        <!-- Base Image Layer - FUNDO.png (locked, untouched) -->
+        <div class="base-image-layer"></div>
+        
+        <!-- Green Neon Smoke Layer - Continuous Animation -->
+        <div class="smoke-layer">
+            <div class="smoke smoke-1"></div>
+            <div class="smoke smoke-2"></div>
+            <div class="smoke smoke-3"></div>
+        </div>
+        
+        <!-- Existing Effects (preserved) -->
+        <div class="neural-network" id="neuralNetwork"></div>
+        <div class="particle-field"></div>
+        <div class="grid-overlay"></div>
+        <div class="gradient-orbs"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="nav-header">
+        <nav class="nav-container">
+            <div class="brand">
+                <span class="brand-black">Mark</span><span class="brand-neon">tech</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">← Voltar</a>
+                <a href="index.html#pricing" class="nav-link">Pacotes</a>
+                <a href="index.html#contact" class="nav-link">Contato</a>
+            </div>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="order-section">
+        <div class="section-container">
+            <!-- Order Header -->
+            <div class="order-header featured">
+                <div class="featured-badge">Mais Popular</div>
+                <div class="plan-icon-large">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h1 class="order-title">PACOTE INTERMEDIÁRIO</h1>
+                <div class="order-price">
+                    <span class="price-value">R$ 299,90</span>
+                </div>
+                <p class="order-subtitle">Ideal para negócios em crescimento</p>
+            </div>
+
+            <!-- Package Summary -->
+            <div class="package-summary">
+                <h2>O que está incluído?</h2>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <div class="summary-icon">
+                            <i class="fas fa-file-code"></i>
+                        </div>
+                        <div class="summary-content">
+                            <h3>Até 5 Páginas</h3>
+                            <p>Home, Sobre, Serviços, Portfólio, Contato</p>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="summary-content">
+                            <h3>Design</h3>
+                            <p>Moderno, Minimalista ou Tecnológico</p>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-icon">
+                            <i class="fas fa-user-lock"></i>
+                        </div>
+                        <div class="summary-content">
+                            <h3>Login de Usuários</h3>
+                            <p>Sistema de autenticação completo</p>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="summary-content">
+                            <h3>Sistema de Avaliação</h3>
+                            <p>Clientes podem avaliar serviços</p>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="summary-content">
+                            <h3>Dashboard</h3>
+                            <p>Painel de controle simples</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Form -->
+            <div class="order-form-container">
+                <h2>Descreva seu Projeto</h2>
+                <form id="orderForm" class="order-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nome Completo *</label>
+                            <input type="text" id="name" name="name" required placeholder="Seu nome completo">
+                            <div id="nameError" class="error-message" style="display: none; color: #ff4444; font-size: 0.9rem; margin-top: 0.5rem;">Campo obrigatório</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail *</label>
+                            <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                            <div id="emailError" class="error-message" style="display: none; color: #ff4444; font-size: 0.9rem; margin-top: 0.5rem;">Campo obrigatório</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="siteType">Tipo de Site *</label>
+                        <select id="siteType" name="siteType" required>
+                            <option value="">Selecione o tipo</option>
+                            <option value="institucional">Site Institucional</option>
+                            <option value="ecommerce">E-commerce</option>
+                            <option value="portfolio">Portfólio</option>
+                            <option value="landing">Landing Page</option>
+                            <option value="blog">Blog</option>
+                            <option value="sistema">Sistema Web</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                        <div id="siteTypeError" class="error-message" style="display: none; color: #ff4444; font-size: 0.9rem; margin-top: 0.5rem;">Campo obrigatório</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pages">Quantidade de Páginas *</label>
+                        <select id="pages" name="pages" required>
+                            <option value="">Selecione a quantidade</option>
+                            <option value="1">1 página</option>
+                            <option value="2">2 páginas</option>
+                            <option value="3">3 páginas</option>
+                            <option value="4">4 páginas</option>
+                            <option value="5">5 páginas</option>
+                        </select>
+                        <div id="pagesError" class="error-message" style="display: none; color: #ff4444; font-size: 0.9rem; margin-top: 0.5rem;">Campo obrigatório</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="style">Estilo Desejado *</label>
+                        <select id="style" name="style" required>
+                            <option value="">Selecione o estilo</option>
+                            <option value="moderno">Moderno</option>
+                            <option value="minimalista">Minimalista</option>
+                            <option value="tecnologico">Tecnológico</option>
+                        </select>
+                        <div id="styleError" class="error-message" style="display: none; color: #ff4444; font-size: 0.9rem; margin-top: 0.5rem;">Campo obrigatório</div>
+                    </div>
+
+                    <div class="form-checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeLogin" name="includeLogin">
+                            <span class="checkmark"></span>
+                            Incluir sistema de login para usuários
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeRating" name="includeRating">
+                            <span class="checkmark"></span>
+                            Incluir sistema de avaliação
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Descrição Detalhada *</label>
+                        <textarea id="description" name="description" rows="6" required placeholder="Descreva seu projeto, objetivos, referências, cores preferidas, funcionalidades desejadas, etc."></textarea>
+                        <div id="descriptionError" class="error-message" style="display: none; color: #ff4444; font-size: 0.9rem; margin-top: 0.5rem;">Campo obrigatório</div>
+                    </div>
+
+                    <button type="button" id="finalizarPedidoBtn" class="premium-btn primary large full-width" onclick="validarPedido()">Finalizar Pedido</button>
+                </form>
+            </div>
+
+            <!-- Success Message -->
+            <div id="successMessage" class="success-message" style="display: none;">
+                <div class="success-content">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Pedido Enviado com Sucesso!</h3>
+                    <p>Recebemos sua solicitação e entraremos em contato em até 24 horas.</p>
+                    <button class="premium-btn" onclick="window.location.href='index.html'">Voltar ao Site</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="section-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="brand">
+                        <span class="brand-black">Mark</span><span class="brand-neon">tech</span>
+                    </div>
+                    <p>Tecnologia que transforma negócios</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Início</a>
+                    <a href="index.html#pricing">Pacotes</a>
+                    <a href="index.html#contact">Contato</a>
+                </div>
+            </div>
+            <div class="footer-copy">
+                <p>&copy; 2024 Mark Tech. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="neural-network.js"></script>
+    <script type="text/plain" data-legacy="order-validation">
+        function validarPedido() {
+            const campos = ['name', 'email', 'siteType', 'pages', 'style', 'description'];
+            let temErro = false;
+
+            campos.forEach(campo => {
+                const elemento = document.getElementById(campo);
+                const erro = document.getElementById(campo + 'Error');
+                const valor = elemento.value.trim();
+
+                if (valor === '') {
+                    elemento.style.borderColor = '#ff4444';
+                    erro.style.display = 'block';
+                    temErro = true;
+                } else {
+                    elemento.style.borderColor = '';
+                    erro.style.display = 'none';
+                }
+            });
+
+            if (!temErro) {
+                // Criar objeto do pedido - dados exatamente como preenchidos
+                const pedido = {
+                    id: 'PED_' + Date.now(),
+                    nome: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    pacote: 'Intermediário',
+                    valor: '299.90',
+                    siteType: document.getElementById('siteType').value,
+                    pages: document.getElementById('pages').value,
+                    style: document.getElementById('style').value,
+                    description: document.getElementById('description').value,
+                    includeLogin: document.getElementById('includeLogin').checked,
+                    includeRating: document.getElementById('includeRating').checked,
+                    data: new Date().toLocaleDateString('pt-BR'),
+                    dataISO: new Date().toISOString()
+                };
+
+                console.log('🔥 Salvando pedido:', pedido);
+
+                // Salvar no localStorage sem alterar dados
+                let pedidos = JSON.parse(localStorage.getItem('pedidos') || '[]');
+                pedidos.unshift(pedido);
+                localStorage.setItem('pedidos', JSON.stringify(pedidos));
+                
+                console.log('🔥 Pedidos salvos no localStorage:', pedidos.length);
+
+                window.location.href = 'pedido-sucesso.html';
+            }
+        }
+    </script>
+    <script type="text/plain" data-legacy="order-auth-guard">
+        // Bloqueio total de acesso sem login
+        const user = JSON.parse(localStorage.getItem("user"));
+        
+        if (!user) {
+            window.location.href = "cadastro.html";
+        }
+    </script>
+    <script type="text/plain" data-legacy="order-firestore">
+        // Importar Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDJ51q10wnS3M44FN5ynEa448iaFIHF3vw",
+            authDomain: "marktech-a89b4.firebaseapp.com",
+            projectId: "marktech-a89b4",
+            storageBucket: "marktech-a89b4.firebasestorage.app",
+            messagingSenderId: "174835858964",
+            appId: "1:174835858964:web:f01fdc8158606274dcb101"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // 🔥 VARIÁVEL GLOBAL PARA ARMAZENAR ESTADO DO USUÁRIO
+        let currentUser = null;
+
+        // 🔥 OBSERVAR MUDANÇAS DE AUTENTICAÇÃO
+        const auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+            currentUser = user;
+            console.log('🔥 Estado de autenticação atualizado (intermediário):', user ? user.uid : 'null');
+        });
+
+        // 🔥 LISTENER GLOBAL SEGURO PARA FINALIZAR PEDIDO (INTERMEDIÁRIO)
+        document.addEventListener("click", async (e) => {
+            const btn = e.target.closest("button");
+
+            if (!btn) return;
+
+            const texto = btn.textContent?.trim().toLowerCase();
+
+            if (texto.includes("finalizar") || btn.id === "finalizarPedido" || btn.id === "finalizarPedidoBtn") {
+                alert("Pedido concluído com sucesso!");
+            }
+        });
+
+        // 🔥 INICIALIZAR QUANDO DOM CARREGAR
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔥 DOM carregado (intermediário) - inicializando sistema...');
+            
+            // Carregar dados do usuário
+            loadUserOrder();
+        });
+
+        // 🔥 FUNÇÃO PRINCIPAL DO ZERO (INTERMEDIÁRIO)
+        async function executarFinalizacaoPedidoIntermediario() {
+            console.log('🔥 EXECUTANDO FINALIZAÇÃO DE PEDIDO (INTERMEDIÁRIO)...');
+            
+            const auth = getAuth();
+            const user = auth.currentUser;
+
+            if (!user) {
+                alert("Você precisa estar logado");
+                return;
+            }
+
+            // 🔥 CAPTURAR DADOS DO FORMULÁRIO
+            const form = document.getElementById('orderForm');
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+
+            // Add checkbox values
+            data.includeLogin = document.getElementById('includeLogin').checked;
+            data.includeRating = document.getElementById('includeRating').checked;
+            
+            // 🔥 GERAR ID ÚNICO DO PEDIDO
+            const orderId = "ORDER_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9);
+
+            // 🔥 CRIAR OBJETO DO PEDIDO
+            const pedido = {
+                id: orderId,
+                orderId: orderId,
+                userId: user.uid,
+                userEmail: user.email || '',
+                userName: user.displayName || user.email || 'Usuário',
+                pacote: 'intermediario',
+                nome: data.name || '',
+                email: data.email || '',
+                siteType: data.siteType || '',
+                pages: data.pages || '',
+                style: data.style || '',
+                description: data.description || '',
+                includeLogin: data.includeLogin || false,
+                includeRating: data.includeRating || false,
+                status: "pendente",
+                progresso: 10,
+                createdAt: new Date().toISOString(),
+                data: new Date().toLocaleDateString('pt-BR'),
+                isReal: true
+            };
+
+            try {
+                console.log('🔥 SALVANDO PEDIDO INTERMEDIÁRIO NO FIRESTORE...', { orderId, user: user.uid });
+                
+                // 🔥 SALVAR NO FIRESTORE
+                await setDoc(doc(db, "pedidos", orderId), pedido);
+                console.log('✅ Pedido intermediário salvo no Firestore:', orderId);
+                
+                // 🔥 SALVAR NO LOCALSTORAGE
+                let pedidos = JSON.parse(localStorage.getItem('pedidos') || '[]');
+                pedidos.unshift(pedido);
+                localStorage.setItem('pedidos', JSON.stringify(pedidos));
+                console.log('✅ Pedido intermediário salvo no localStorage');
+
+                // 🔥 EXIBIR MENSAGEM DE SUCESSO
+                const successDiv = document.getElementById('successMessage');
+                if (successDiv) {
+                    successDiv.innerHTML = `
+                        <div class="success-content">
+                            <h3>🎉 Pedido finalizado com sucesso!</h3>
+                            <p><strong>ID do Pedido:</strong> ${orderId}</p>
+                            <p><strong>Status:</strong> ${pedido.status}</p>
+                            <p><strong>Pacote:</strong> Intermediário</p>
+                            <p>Seu pedido foi recebido e será analisado pela nossa equipe.</p>
+                            <button onclick="window.location.href='meus-pedidos.html'" class="premium-btn primary">
+                                Ver Meus Pedidos
+                            </button>
+                        </div>
+                    `;
+                    
+                    // Esconder formulário e mostrar sucesso
+                    if (form) form.style.display = 'none';
+                    successDiv.style.display = 'block';
+                    successDiv.scrollIntoView({ behavior: 'smooth' });
+                    console.log('✅ Mensagem de sucesso exibida (intermediário)');
+                } else {
+                    alert("Pedido intermediário finalizado com sucesso! ID: " + orderId);
+                }
+                
+            } catch (error) {
+                console.error("❌ Erro ao salvar pedido intermediário:", error);
+                alert("Erro ao salvar pedido intermediário: " + error.message + ". Tente novamente.");
+            }
+        }
+
+        // 🔥 FUNÇÃO GLOBAL DE PROCESSAMENTO (INTERMEDIÁRIO)
+        async function processOrderGlobalIntermediario(e) {
+            console.log('🔥 PROCESSO GLOBAL INICIADO (INTERMEDIÁRIO)!');
+            
+            // 🔥 CAPTURAR DADOS DO FORMULÁRIO MANUALMENTE
+            const form = document.getElementById('orderForm');
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+
+            // Add checkbox values
+            data.includeLogin = document.getElementById('includeLogin').checked;
+            data.includeRating = document.getElementById('includeRating').checked;
+            
+            // 🔥 GERAR ID ÚNICO DO PEDIDO
+            const orderId = 'ORD-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+            
+            // 🔥 CRIAR OBJETO DO PEDIDO REAL
+            const pedidoData = {
+                orderId: orderId,
+                userId: currentUser.uid,
+                userEmail: currentUser.email || '',
+                userName: currentUser.displayName || currentUser.email || 'Usuário',
+                pacote: 'intermediario',
+                nome: data.name || '',
+                email: data.email || '',
+                siteType: data.siteType || '',
+                pages: data.pages || '',
+                style: data.style || '',
+                description: data.description || '',
+                includeLogin: data.includeLogin || false,
+                includeRating: data.includeRating || false,
+                status: "Pendente",
+                progresso: 10,
+                createdAt: new Date().toISOString(),
+                data: new Date().toLocaleDateString('pt-BR'),
+                isReal: true
+            };
+
+            try {
+                console.log('🔥 Iniciando salvamento do pedido intermediário global...', { orderId, user: currentUser.uid });
+                
+                // 🔥 SALVAR NO FIRESTORE COM ID ÚNICO
+                await setDoc(doc(db, "pedidos", orderId), pedidoData);
+                console.log('✅ Pedido salvo no Firestore:', orderId);
+                
+                // 🔥 SALVAR NO LOCALSTORAGE PARA COMPATIBILIDADE
+                let pedidos = JSON.parse(localStorage.getItem('pedidos') || '[]');
+                pedidos.unshift(pedidoData);
+                localStorage.setItem('pedidos', JSON.stringify(pedidos));
+                console.log('✅ Pedido salvo no localStorage');
+
+                // 🔥 EXIBIR MENSAGEM DE SUCESSO COM ID DO PEDIDO
+                const successDiv = document.getElementById('successMessage');
+                if (successDiv) {
+                    successDiv.innerHTML = `
+                        <div class="success-content">
+                            <h3>🎉 Pedido finalizado com sucesso!</h3>
+                            <p><strong>ID do Pedido:</strong> ${orderId}</p>
+                            <p><strong>Status:</strong> ${pedidoData.status}</p>
+                            <p><strong>Pacote:</strong> Intermediário</p>
+                            <p>Seu pedido foi recebido e será analisado pela nossa equipe.</p>
+                            <button onclick="window.location.href='meus-pedidos.html'" class="premium-btn primary">
+                                Ver Meus Pedidos
+                            </button>
+                        </div>
+                    `;
+                    
+                    // Esconder formulário e mostrar sucesso
+                    const form = document.getElementById('orderForm');
+                    if (form) form.style.display = 'none';
+                    successDiv.style.display = 'block';
+                    successDiv.scrollIntoView({ behavior: 'smooth' });
+                    console.log('✅ Mensagem de sucesso exibida');
+                } else {
+                    console.error('❌ Div successMessage não encontrada');
+                }
+                
+            } catch (error) {
+                console.error("❌ Erro ao salvar pedido intermediário global:", error);
+                console.error("❌ Detalhes do erro:", error.message, error.code);
+                
+                // 🔥 TRATAMENTO ESPECÍFICO PARA ERRO DE PERMISSÃO
+                if (error.code === 'permission-denied' || error.message.includes('Missing or insufficient permissions')) {
+                    alert("Erro de permissão no Firestore. Código do erro: " + error.code);
+                } else if (error.code === 'unauthenticated') {
+                    alert("Usuário não autenticado. Código do erro: " + error.code);
+                } else {
+                    alert("Erro ao salvar pedido: " + error.message + ". Código do erro: " + (error.code || 'desconhecido') + ". Tente novamente.");
+                }
+            }
+        }
+
+        // 🔥 PROCESSAR PEDIDO APÓS VERIFICAÇÃO
+        async function processOrder(e) {
+            // 🔥 CAPTURAR DADOS DO FORMULÁRIO MANUALMENTE
+            const form = document.getElementById('orderForm');
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+
+            // Add checkbox values
+            data.includeLogin = document.getElementById('includeLogin').checked;
+            data.includeRating = document.getElementById('includeRating').checked;
+            
+            // 🔥 GERAR ID ÚNICO DO PEDIDO
+            const orderId = 'ORD-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+            
+            // 🔥 CRIAR OBJETO DO PEDIDO REAL
+            const pedidoData = {
+                orderId: orderId,
+                userId: currentUser.uid,
+                userEmail: currentUser.email || '',
+                userName: currentUser.displayName || currentUser.email || 'Usuário',
+                pacote: 'intermediario',
+                nome: data.name || '',
+                email: data.email || '',
+                siteType: data.siteType || '',
+                pages: data.pages || '',
+                style: data.style || '',
+                description: data.description || '',
+                includeLogin: data.includeLogin || false,
+                includeRating: data.includeRating || false,
+                status: "Pendente",
+                progresso: 10,
+                createdAt: new Date().toISOString(),
+                data: new Date().toLocaleDateString('pt-BR'),
+                isReal: true
+            };
+
+            try {
+                console.log('🔥 Iniciando salvamento do pedido intermediário...', { orderId, user: currentUser.uid });
+                
+                // 🔥 SALVAR NO FIRESTORE COM ID ÚNICO
+                await setDoc(doc(db, "pedidos", orderId), pedidoData);
+                console.log('✅ Pedido salvo no Firestore:', orderId);
+                
+                // 🔥 SALVAR NO LOCALSTORAGE PARA COMPATIBILIDADE COM MEUS-PEDIDOS
+                let pedidos = JSON.parse(localStorage.getItem('pedidos') || '[]');
+                pedidos.unshift(pedidoData);
+                localStorage.setItem('pedidos', JSON.stringify(pedidos));
+                console.log('✅ Pedido salvo no localStorage');
+
+                // 🔥 EXIBIR MENSAGEM DE SUCESSO COM ID DO PEDIDO
+                const successDiv = document.getElementById('successMessage');
+                if (successDiv) {
+                    successDiv.innerHTML = `
+                        <div class="success-content">
+                            <h3>🎉 Pedido finalizado com sucesso!</h3>
+                            <p><strong>ID do Pedido:</strong> ${orderId}</p>
+                            <p><strong>Status:</strong> ${pedidoData.status}</p>
+                            <p><strong>Pacote:</strong> Intermediário</p>
+                            <p>Seu pedido foi recebido e será analisado pela nossa equipe.</p>
+                            <button onclick="window.location.href='meus-pedidos.html'" class="premium-btn primary">
+                                Ver Meus Pedidos
+                            </button>
+                        </div>
+                    `;
+                    
+                    // Esconder formulário e mostrar sucesso
+                    e.target.style.display = 'none';
+                    successDiv.style.display = 'block';
+                    successDiv.scrollIntoView({ behavior: 'smooth' });
+                    console.log('✅ Mensagem de sucesso exibida');
+                } else {
+                    console.error('❌ Div successMessage não encontrada');
+                }
+                
+            } catch (error) {
+                console.error("❌ Erro ao salvar pedido:", error);
+                console.error("❌ Detalhes do erro:", error.message, error.code);
+                
+                // 🔥 TRATAMENTO ESPECÍFICO PARA ERRO DE PERMISSÃO
+                if (error.code === 'permission-denied' || error.message.includes('Missing or insufficient permissions')) {
+                    alert("Erro de permissão no Firestore. Verifique se as regras de segurança do Firestore permitem escrita para usuários autenticados. Código do erro: " + error.code);
+                } else if (error.code === 'unauthenticated') {
+                    alert("Usuário não autenticado. Faça login novamente. Código do erro: " + error.code);
+                } else {
+                    alert("Erro ao salvar pedido: " + error.message + ". Código do erro: " + (error.code || 'desconhecido') + ". Tente novamente.");
+                }
+            }
+        }
+    </script>
+    <script type="module">
+        import { initOrderPage } from "./order-page.js";
+
+        initOrderPage({
+            packageKey: "intermediario",
+            requiredFieldIds: ["name", "email", "siteType", "pages", "style", "description"]
+        });
+    </script>
+</body>
+</html>
